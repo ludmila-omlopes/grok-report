@@ -61,9 +61,9 @@ export async function POST(
     const safeName = file.name.replace(/[^\w.\-]+/g, "_");
     const storageKey = `cases/${caseId}/evidence/${sha256}_${safeName}`;
 
-    // Upload to Vercel Blob (private-by-design: you control the key)
+    // Upload to Vercel Blob (private access: controlled via API)
     const blob = await put(storageKey, buffer, {
-      access: "public",
+      access: "private",
       contentType: file.type,
       addRandomSuffix: false,
     });
@@ -73,7 +73,7 @@ export async function POST(
       .insert(evidenceFiles)
       .values({
         caseId,
-        storageKey: blob.pathname ?? storageKey,
+        storageKey: blob.url,
         originalFilename: file.name,
         mimeType: file.type,
         sizeBytes: file.size,
