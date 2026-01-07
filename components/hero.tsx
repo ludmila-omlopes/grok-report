@@ -27,8 +27,8 @@ export function Hero() {
               <Button size="lg" className="text-base font-semibold" asChild>
                 <Link href="/cases/new">Iniciar denúncia →</Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-base font-semibold bg-transparent">
-                Ver documentação
+              <Button size="lg" variant="outline" className="text-base font-semibold bg-transparent" asChild>
+                <Link href="/privacy">Ver Política de Privacidade</Link>
               </Button>
             </div>
           </div>
